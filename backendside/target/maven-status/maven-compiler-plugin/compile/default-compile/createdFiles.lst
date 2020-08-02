@@ -1,0 +1,6 @@
+de\tech11\UserManager\models\User.class
+de\tech11\UserManager\secure\ProtectedController.class
+de\tech11\UserManager\client\ServiceController.class
+de\tech11\UserManager\models\IUser.class
+de\tech11\UserManager\models\UserEntity.class
+de\tech11\UserManager\UserManagerRestApplication.class
