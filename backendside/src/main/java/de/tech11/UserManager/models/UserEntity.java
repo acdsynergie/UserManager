@@ -1,28 +1,58 @@
 package de.tech11.UserManager.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.NaturalIdCache;
 
 /**
  * Class representing the entity version of IUser interface
  */
 @Entity
 @Table(name = "users")
-public class UserEntity extends BaseEntity implements IUserContract {
+@NaturalIdCache
+@NamedQuery(name = UserEntity.BY_EMAIL, query = "select u from users u where u.email = ?1")
+public class UserEntity extends BaseEntity implements IUserContract,Serializable {
+	
+	public static final String BY_EMAIL = "u.byEmail";
+	
+	private static final long serialVersionUID = 1L;
+	@Column(nullable = false)
 	String firstname;
+	@Column(nullable = false)
 	String lastname;
+	
+	@NaturalId(mutable = true)
+	@Column(nullable = false,unique = true)
 	String email;
+	@Column(nullable = false)
 	Date birthday;
+
+	@OneToOne(targetEntity = UserCredentials.class, mappedBy = "id")
+	@Column(nullable = false)
 	UserCredentials credentials;
 
-	@Override
-	@OneToOne(targetEntity = UserCredentials.class, mappedBy = "id")
+	public UserEntity() {
+		super();
+	}
 
+	UserEntity(String firstname, String lastname, String email, Date birthday, UserCredentials credentials) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.birthday = birthday;
+		this.credentials = credentials;
+	}
+
+	@Override
 	public long getId() {
 		return id;
 	}
@@ -155,6 +185,16 @@ public class UserEntity extends BaseEntity implements IUserContract {
 	public String toString() {
 		return "UserEntity [firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", birthday="
 				+ birthday + ", credentials=" + credentials + "]";
+	}
+
+	/**
+	 * Use this help funtion to create a new Entity for persist with values from {@link IUserContract}
+	 * @param userContract
+	 * @return
+	 */
+	public static UserEntity fromContract(IUserContract userContract) {
+		// TODO Auto-generated method stub
+		return new UserEntity(userContract.getFirstname(),userContract.getLastname(),userContract.getEmail(),userContract.getBirthday(),userContract.getCredentials());
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,6 +19,7 @@ public class BaseEntity {
 	protected Date created;
 
 	@UpdateTimestamp
+	@Version
 	protected Date changed;
 
 	public BaseEntity() {

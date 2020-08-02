@@ -1,6 +1,10 @@
+de\tech11\UserManager\models\UserCredentials.class
 de\tech11\UserManager\models\User.class
+de\tech11\UserManager\client\IUserCredentialsRepository.class
+de\tech11\UserManager\client\IUserRepository.class
 de\tech11\UserManager\secure\ProtectedController.class
-de\tech11\UserManager\client\ServiceController.class
-de\tech11\UserManager\models\IUser.class
+de\tech11\UserManager\models\BaseEntity.class
+de\tech11\UserManager\models\IUserContract.class
+de\tech11\UserManager\client\UserController.class
 de\tech11\UserManager\models\UserEntity.class
 de\tech11\UserManager\UserManagerRestApplication.class

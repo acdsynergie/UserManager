@@ -3,6 +3,8 @@ package de.tech11.UserManager.secure;
 import org.eclipse.microprofile.jwt.Claim;
 import org.eclipse.microprofile.jwt.ClaimValue;
 
+import de.tech11.UserManager.client.IUserCredentialsRepository;
+
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -16,6 +18,9 @@ import javax.ws.rs.Path;
 @RequestScoped
 public class ProtectedController {
 
+	@Inject
+	private IUserCredentialsRepository userRepository;
+	
     @Inject
     @Claim("custom-value")
     private ClaimValue<String> custom;
