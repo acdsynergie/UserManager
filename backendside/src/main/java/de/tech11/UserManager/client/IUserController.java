@@ -17,7 +17,7 @@ import de.tech11.UserManager.models.IUserContract;
 
 public interface IUserController {
 
-	List<IUserContract> doList(Optional<Long> filters);
+	List<IUserContract> doList();
 
 	IUserContract doFind(Long id);
 

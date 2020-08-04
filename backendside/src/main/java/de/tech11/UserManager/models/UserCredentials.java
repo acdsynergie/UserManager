@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cred")
 public class UserCredentials extends BaseEntity {
 	public String username;
 	public String password;

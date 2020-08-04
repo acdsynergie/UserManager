@@ -5,7 +5,6 @@
  http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0" >
 
    <persistence-unit name="tech11">
-     <provider>com.objectdb.jpa.Provider</provider>
      <jta-data-source>java:/H2DS</jta-data-source>
      <class>de.tech11.UserManager.models.BaseEntity</class>
      <class>de.tech11.UserManager.models.UserEntity</class>

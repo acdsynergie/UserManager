@@ -31,9 +31,8 @@ public class UserController implements IUserController {
 	@Override
 	@GET
 	@Transactional
-	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/list")
-	public List<IUserContract> doList(Optional<Long> filters) {
+	public List<IUserContract> doList() {
 		List<UserEntity> resultList = userRepository.findAll();
 		List<IUserContract> result = new ArrayList<IUserContract>();
 
@@ -48,7 +47,6 @@ public class UserController implements IUserController {
 	@GET
 	@Path("/{id}")
 	@Transactional
-	@Produces(MediaType.APPLICATION_JSON)
 	public IUserContract doFind(@PathParam("id") Long id) {
 		IUserContract resultEntity = userRepository.findBy(id);
 		return resultEntity;
@@ -58,8 +56,6 @@ public class UserController implements IUserController {
 	@POST
 	@Path("/create")
 	@Transactional
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
 	public IUserContract doCreate(IUserContract userContract) {
 		UserEntity saved = userRepository.save(UserEntity.fromContract(userContract));
 		return saved;
@@ -69,8 +65,6 @@ public class UserController implements IUserController {
 	@POST
 	@Path("/modify")
 	@Transactional
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
 	public void doModify(IUserContract userContract) {
 		userRepository.refresh(UserEntity.fromContract(userContract));
 	}
@@ -79,8 +73,6 @@ public class UserController implements IUserController {
 	@POST
 	@Path("/delete")
 	@Transactional
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
 	public void doDelete(IUserContract userContract) {
 		userRepository.remove(UserEntity.fromContract(userContract));
 	}

@@ -16,7 +16,6 @@ import org.hibernate.annotations.NaturalIdCache;
  * Class representing the entity version of IUser interface
  */
 @Entity
-@Table(name = "users")
 public class UserEntity extends BaseEntity implements IUserContract,Serializable {
 	
 	private static final long serialVersionUID = 1L;
