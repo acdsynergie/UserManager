@@ -23,7 +23,7 @@ import javax.ws.rs.core.Application;
 public class UserManagerRestApplication extends Application 
 {
 
-	@PersistenceUnit
+	@PersistenceUnit(unitName = "tech11")
     private EntityManagerFactory emf;
 
     @Produces
