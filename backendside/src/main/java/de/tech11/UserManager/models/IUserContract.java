@@ -23,8 +23,4 @@ public interface IUserContract {
 	Date getBirthday();
 
 	void setBirthday(Date birthday);
-
-	UserCredentials getCredentials();
-
-	void setCredentials(UserCredentials credentials);
 }

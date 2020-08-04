@@ -3,7 +3,6 @@ package de.tech11.UserManager.models;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -89,21 +88,10 @@ public class User extends BaseEntity implements IUserContract
 	}
 
 	@Override
-	public UserCredentials getCredentials() {
-		return credentials;
-	}
-
-	@Override
-	public void setCredentials(UserCredentials credentials) {
-		this.credentials = credentials;
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
-		result = prime * result + ((credentials == null) ? 0 : credentials.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
 		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
@@ -123,11 +111,6 @@ public class User extends BaseEntity implements IUserContract
 			if (other.birthday != null)
 				return false;
 		} else if (!birthday.equals(other.birthday))
-			return false;
-		if (credentials == null) {
-			if (other.credentials != null)
-				return false;
-		} else if (!credentials.equals(other.credentials))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -150,8 +133,9 @@ public class User extends BaseEntity implements IUserContract
 	@Override
 	public String toString() {
 		return "User [firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", birthday=" + birthday
-				+ ", credentials=" + credentials + "]";
+				+ "]";
 	}
+
 	
 	
 }

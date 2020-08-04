@@ -17,7 +17,6 @@ import org.hibernate.annotations.NaturalIdCache;
  */
 @Entity
 @Table(name = "users")
-@NamedQuery(name = UserEntity.BY_EMAIL, query = "select u from users u where u.email = ?1")
 public class UserEntity extends BaseEntity implements IUserContract,Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -31,21 +30,16 @@ public class UserEntity extends BaseEntity implements IUserContract,Serializable
 	@Column(nullable = false)
 	Date birthday;
 
-	@OneToOne(targetEntity = UserCredentials.class, mappedBy = "id")
-	@Column(nullable = false)
-	UserCredentials credentials;
-
 	public UserEntity() {
 		super();
 	}
 
-	UserEntity(String firstname, String lastname, String email, Date birthday, UserCredentials credentials) {
+	UserEntity(String firstname, String lastname, String email, Date birthday) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.birthday = birthday;
-		this.credentials = credentials;
 	}
 
 	@Override
@@ -119,25 +113,22 @@ public class UserEntity extends BaseEntity implements IUserContract,Serializable
 	}
 
 	@Override
-	public UserCredentials getCredentials() {
-		return credentials;
-	}
-
-	@Override
-	public void setCredentials(UserCredentials credentials) {
-		this.credentials = credentials;
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
-		result = prime * result + ((credentials == null) ? 0 : credentials.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
 		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
 		return result;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "UserEntity [firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", birthday="
+				+ birthday + "]";
 	}
 
 	@Override
@@ -153,11 +144,6 @@ public class UserEntity extends BaseEntity implements IUserContract,Serializable
 			if (other.birthday != null)
 				return false;
 		} else if (!birthday.equals(other.birthday))
-			return false;
-		if (credentials == null) {
-			if (other.credentials != null)
-				return false;
-		} else if (!credentials.equals(other.credentials))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -177,12 +163,6 @@ public class UserEntity extends BaseEntity implements IUserContract,Serializable
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "UserEntity [firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", birthday="
-				+ birthday + ", credentials=" + credentials + "]";
-	}
-
 	/**
 	 * Use this help funtion to create a new Entity for persist with values from {@link IUserContract}
 	 * @param userContract
@@ -190,7 +170,7 @@ public class UserEntity extends BaseEntity implements IUserContract,Serializable
 	 */
 	public static UserEntity fromContract(IUserContract userContract) {
 		// TODO Auto-generated method stub
-		return new UserEntity(userContract.getFirstname(),userContract.getLastname(),userContract.getEmail(),userContract.getBirthday(),userContract.getCredentials());
+		return new UserEntity(userContract.getFirstname(),userContract.getLastname(),userContract.getEmail(),userContract.getBirthday());
 	}
 
 }

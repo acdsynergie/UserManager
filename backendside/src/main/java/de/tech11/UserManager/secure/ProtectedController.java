@@ -18,9 +18,6 @@ import javax.ws.rs.Path;
 @RequestScoped
 public class ProtectedController {
 
-	@Inject
-	private IUserCredentialsRepository userRepository;
-	
     @Inject
     @Claim("custom-value")
     private ClaimValue<String> custom;

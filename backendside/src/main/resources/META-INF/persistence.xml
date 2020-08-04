@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+ http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0" >
+
+   <persistence-unit name="tech11">
+     <provider>com.objectdb.jpa.Provider</provider>
+     <jta-data-source>java:/H2DS</jta-data-source>
+     <class>de.tech11.UserManager.models.BaseEntity</class>
+     <class>de.tech11.UserManager.models.UserEntity</class>
+     <class>de.tech11.UserManager.models.UserCredentials</class>
+     <properties>
+       <property name="javax.persistence.jdbc.url"
+                 value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"/>
+       <property name="javax.persistence.jdbc.user" value="sa"/>
+       <property name="javax.persistence.jdbc.password" value="sa"/>
+     </properties>
+   </persistence-unit>
+
+</persistence>
