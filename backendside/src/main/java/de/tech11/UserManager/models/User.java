@@ -2,22 +2,23 @@ package de.tech11.UserManager.models;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Class representing the entity version of IUser interface
  */
+@Entity
+@Table(name = "users")
 public class User extends BaseEntity implements IUserContract
 {
 	String firstname;
 	String lastname;
 	String email;
 	Date birthday;
-	UserCredentials credentials;
 
 	@Override
-	@OneToOne(targetEntity = UserCredentials.class,mappedBy = "id")
-
 	public long getId() {
 		return id;
 	}

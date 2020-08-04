@@ -2,13 +2,18 @@ package de.tech11.UserManager.models;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class BaseEntity {
 
 	@Id

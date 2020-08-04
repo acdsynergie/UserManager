@@ -17,11 +17,8 @@ import org.hibernate.annotations.NaturalIdCache;
  */
 @Entity
 @Table(name = "users")
-@NaturalIdCache
 @NamedQuery(name = UserEntity.BY_EMAIL, query = "select u from users u where u.email = ?1")
 public class UserEntity extends BaseEntity implements IUserContract,Serializable {
-	
-	public static final String BY_EMAIL = "u.byEmail";
 	
 	private static final long serialVersionUID = 1L;
 	@Column(nullable = false)
@@ -29,8 +26,7 @@ public class UserEntity extends BaseEntity implements IUserContract,Serializable
 	@Column(nullable = false)
 	String lastname;
 	
-	@NaturalId(mutable = true)
-	@Column(nullable = false,unique = true)
+	@Column(nullable = false, unique = true)
 	String email;
 	@Column(nullable = false)
 	Date birthday;
