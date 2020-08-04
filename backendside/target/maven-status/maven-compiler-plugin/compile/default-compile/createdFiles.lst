@@ -1,5 +1,7 @@
 de\tech11\UserManager\models\UserCredentials.class
 de\tech11\UserManager\models\User.class
+de\tech11\UserManager\EntityManagerProducer.class
+de\tech11\UserManager\client\IUserController.class
 de\tech11\UserManager\client\IUserCredentialsRepository.class
 de\tech11\UserManager\client\IUserRepository.class
 de\tech11\UserManager\secure\ProtectedController.class

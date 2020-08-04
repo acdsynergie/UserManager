@@ -22,23 +22,4 @@ import javax.ws.rs.core.Application;
 
 public class UserManagerRestApplication extends Application 
 {
-
-	@PersistenceUnit(unitName = "tech11")
-    private EntityManagerFactory emf;
-
-    @Produces
-    @TransactionScoped
-    public EntityManager create()
-    {
-        return emf.createEntityManager();
-    }
-
-    public void close(@Disposes EntityManager em)
-    {
-        if (em.isOpen())
-        {
-            em.close();
-        }
-    }
-
 }

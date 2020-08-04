@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -13,29 +15,22 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.deltaspike.jpa.api.transaction.TransactionScoped;
-import org.hibernate.HibernateException;
-
 import de.tech11.UserManager.models.IUserContract;
 import de.tech11.UserManager.models.UserEntity;
 
-@TransactionScoped
 @Path("/client/user")
-public class UserController {
+public class UserController implements IUserController {
 
 	@Inject
 	private IUserRepository userRepository;
 
-	/**
-	 * Constructor to use for new {@link UserController}
-	 */
-	public UserController() {
-		if (userRepository == null) {
-			throw new HibernateException("Something went wrong with DI for mandatory repositories.");
-		}
-	}
+	@Inject
+	private EntityManager em;
 
+	
+	@Override
 	@GET
+	@Transactional
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/list")
 	public List<IUserContract> doList(Optional<Long> filters) {
@@ -49,16 +44,20 @@ public class UserController {
 		return result;
 	}
 
+	@Override
 	@GET
 	@Path("/{id}")
+	@Transactional
 	@Produces(MediaType.APPLICATION_JSON)
 	public IUserContract doFind(@PathParam("id") Long id) {
 		IUserContract resultEntity = userRepository.findBy(id);
 		return resultEntity;
 	}
 
+	@Override
 	@POST
 	@Path("/create")
+	@Transactional
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public IUserContract doCreate(IUserContract userContract) {
@@ -66,16 +65,20 @@ public class UserController {
 		return saved;
 	}
 
+	@Override
 	@POST
 	@Path("/modify")
+	@Transactional
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void doModify(IUserContract userContract) {
 		userRepository.refresh(UserEntity.fromContract(userContract));
 	}
 
+	@Override
 	@POST
 	@Path("/delete")
+	@Transactional
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void doDelete(IUserContract userContract) {

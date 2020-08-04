@@ -4,7 +4,9 @@ C:\Users\mmeye\git\UserManager\backendside\src\main\java\de\tech11\UserManager\s
 C:\Users\mmeye\git\UserManager\backendside\src\main\java\de\tech11\UserManager\models\BaseEntity.java
 C:\Users\mmeye\git\UserManager\backendside\src\main\java\de\tech11\UserManager\models\User.java
 C:\Users\mmeye\git\UserManager\backendside\src\main\java\de\tech11\UserManager\models\IUserContract.java
+C:\Users\mmeye\git\UserManager\backendside\src\main\java\de\tech11\UserManager\EntityManagerProducer.java
 C:\Users\mmeye\git\UserManager\backendside\src\main\java\de\tech11\UserManager\client\IUserRepository.java
 C:\Users\mmeye\git\UserManager\backendside\src\main\java\de\tech11\UserManager\UserManagerRestApplication.java
 C:\Users\mmeye\git\UserManager\backendside\src\main\java\de\tech11\UserManager\models\UserCredentials.java
 C:\Users\mmeye\git\UserManager\backendside\src\main\java\de\tech11\UserManager\client\IUserCredentialsRepository.java
+C:\Users\mmeye\git\UserManager\backendside\src\main\java\de\tech11\UserManager\client\IUserController.java
